@@ -65,11 +65,23 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.29f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\map generator\PlatformGenerator.cs" />
+    <Compile Include="Assets\Scripts\map generator\ObstacleManager.cs" />
     <Compile Include="Assets\Scripts\player and camera\CameraSmooth.cs" />
+    <Compile Include="Assets\Scripts\gacha system\GachaSystem.cs" />
+    <Compile Include="Assets\Scripts\map generator\ObstacleMovement.cs" />
+    <Compile Include="Assets\Scripts\score\ScoreCounter.cs" />
+    <Compile Include="Assets\Scripts\database\CharData.cs" />
+    <Compile Include="Assets\Scripts\menu manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\score\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\gacha system\GachaMenu.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\player and camera\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\map generator\PlatformMovement.cs" />
+    <Compile Include="Assets\Scripts\gacha system\SelectedSkin.cs" />
+    <Compile Include="Assets\Scripts\database\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\menu inicial\MenuCntroller.cs" />
+    <Compile Include="Assets\Scripts\database\CharDatabase.cs" />
+    <Compile Include="Assets\Scripts\gacha system\PlayerUI.cs" />
+    <Compile Include="Assets\Scripts\gameover reset\PlayAgain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

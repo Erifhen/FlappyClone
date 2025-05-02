@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float jumpForce = 8f;
+    public float jumpForce = 5f;
     private Rigidbody2D rb;
+    public GameObject gameOver;
+    public GameObject ScoreEnd;
 
     void Start()
     {
@@ -12,13 +14,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Teste no PC: tecla espaço ou clique do mouse
+       
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Jump();
         }
 
-        // No mobile: toque na tela
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Jump();
@@ -28,5 +29,21 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.linearVelocity = Vector2.up * jumpForce;
+    }
+ 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+        
+            this.enabled = false;
+
+            if (gameOver != null)
+            {
+                gameOver.SetActive(true);
+                ScoreEnd.SetActive(false);
+            }
+
+        }
     }
 }
