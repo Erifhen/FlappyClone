@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - id: G1
-    lifePoints: 3
+    lifePoints: 7
     rarity: 1
     fragmentsOwned: 0
     fragmentsRequired: 0
@@ -32,11 +32,11 @@ MonoBehaviour:
     skinsUnlocked: 010000
     selectedSkinIndex: 0
   - id: G2
-    lifePoints: 0
+    lifePoints: 2
     rarity: 0
-    fragmentsOwned: 1
+    fragmentsOwned: 0
     fragmentsRequired: 3
-    unlocked: 1
+    unlocked: 0
     selected: 0
     displayNames:
     - Dormes
@@ -50,11 +50,11 @@ MonoBehaviour:
     skinsUnlocked: 010000
     selectedSkinIndex: 0
   - id: G3
-    lifePoints: 0
+    lifePoints: 3
     rarity: 0
-    fragmentsOwned: 1
+    fragmentsOwned: 0
     fragmentsRequired: 3
-    unlocked: 1
+    unlocked: 0
     selected: 0
     displayNames:
     - Rapozo

@@ -5,6 +5,8 @@ public class PlayerUI : MonoBehaviour
 {
     public Text pointsText;
     public Text coinsText;
+    public Text pointsTextTwo;
+    public Text coinsTextTwo;
 
     void Start()
     {
@@ -24,10 +26,12 @@ public class PlayerUI : MonoBehaviour
     void UpdatePointsUI()
     {
         pointsText.text = PlayerData.totalPoints.ToString("00");
+        pointsTextTwo.text = PlayerData.totalPoints.ToString("00");
     }
 
     void UpdateCoinsUI()
     {
         coinsText.text = PlayerData.totalCoins.ToString("00");
+        coinsTextTwo.text = PlayerData.totalCoins.ToString("00");
     }
 }

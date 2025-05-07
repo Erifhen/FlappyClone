@@ -20,7 +20,7 @@ public class SelectedSkins : MonoBehaviour
     private void Start()
 {
     CharData selected = charDatabase.characters.Find(c => c.selected);
-    if (selected == null)
+    if(selected == null)
     {
         selected = charDatabase.characters[0];
         selected.selected = true;
@@ -30,7 +30,7 @@ public class SelectedSkins : MonoBehaviour
 
    public void LoadCharacter(CharData character)
     {
-        foreach (Transform child in skinDisplayParent)
+        foreach(Transform child in skinDisplayParent)
         {
         Destroy(child.gameObject);
         }
@@ -52,7 +52,7 @@ public class SelectedSkins : MonoBehaviour
     void AddBuyTrigger()
     {
         var trigger = folderLock.GetComponent<EventTrigger>();
-        if (trigger == null) trigger = folderLock.AddComponent<EventTrigger>();
+        if(trigger == null) trigger = folderLock.AddComponent<EventTrigger>();
 
         trigger.triggers.Clear();
         var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
@@ -62,13 +62,13 @@ public class SelectedSkins : MonoBehaviour
 
     void UpdateCharDisplay()
     {
-        if (currentSkinIndex >= currentChar.skins.Length)
+        if(currentSkinIndex >= currentChar.skins.Length)
             currentSkinIndex = 0;
 
             nameTxt.text = currentChar.displayNames[currentSkinIndex];
             bool unlocked = currentChar.skinsUnlocked[currentSkinIndex];
 
-        if (unlocked)
+        if(unlocked)
         {
             skinImage.sprite = currentChar.skins[currentSkinIndex];
             folderLock.SetActive(false);
@@ -97,24 +97,31 @@ public class SelectedSkins : MonoBehaviour
 
     public void OnPlayButton()
     {
-        Sprite chosenSkin = currentChar.skinsUnlocked[currentSkinIndex]
-            ? currentChar.skins[currentSkinIndex]
-            : currentChar.skins[0];
+        if(GameSession.Instance == null)
+        {
+            Debug.LogError("GameSession.Instance está nulo!");
+            return;
+        }
+    
+        currentChar.selected = true;
+        currentChar.selectedSkinIndex = currentSkinIndex;
 
-        GameManager.Instance.SetCurrentChar(currentChar, chosenSkin);
+        GameSession.Instance.selectedChar = currentChar;
+        GameSession.Instance.selectedSkinIndex = currentSkinIndex;
+
         SceneManager.LoadScene("GameScene");
     }
 
+
     void TryBuy()
     {
-        if (currentChar.skinsUnlocked[currentSkinIndex]) return;
+        if(currentChar.skinsUnlocked[currentSkinIndex]) return;
 
         int price = currentChar.prices[currentSkinIndex];
         bool canAfford = PlayerData.totalCoins >= price;
 
-        if (canAfford)
+        if(canAfford)
         {
-            //usar um popup real com confirmação
             Debug.Log($"Confirmar compra da skin por {price} coins?");
             BuySkin(price);
         }
@@ -128,7 +135,7 @@ public class SelectedSkins : MonoBehaviour
     {
         bool success = PlayerData.SpendCoins(price);
 
-        if (success)
+        if(success)
         {
             currentChar.skinsUnlocked[currentSkinIndex] = true;
             Debug.Log("Skin comprada com sucesso!");

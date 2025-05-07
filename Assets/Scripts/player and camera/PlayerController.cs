@@ -4,8 +4,6 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce = 5f;
     private Rigidbody2D rb;
-    public GameObject gameOver;
-    public GameObject ScoreEnd;
 
     void Start()
     {
@@ -35,14 +33,15 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-        
-            this.enabled = false;
-
-            if (gameOver != null)
+            PlayerStatus status = GetComponent<PlayerStatus>();
+            if(status != null)
             {
-                gameOver.SetActive(true);
-                ScoreEnd.SetActive(false);
-            }
+                status.TakeDamage(1);
+                if(status.lifePoints <= 0)
+                {
+                    this.enabled = false;
+                }
+            }     
 
         }
     }
